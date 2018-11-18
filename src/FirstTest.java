@@ -44,10 +44,10 @@ public class FirstTest {
                 60
         );
 
-//        assertSearch(
-//                By.xpath("//*[contains(@text, 'Search…')]"),
-//                "Search…"
-//        );
+        assertSearch(
+                By.xpath("//*[contains(@text, 'Search…')]"),
+                "Search…"
+        );
 
         waitForElementAndSendKeys(
                 By.xpath("//*[contains(@text, 'Search…')]"),
@@ -167,16 +167,16 @@ public class FirstTest {
         return element;
     }
 
-//    private void assertSearch(By by, String expected_text) {
-//        WebElement element = waitForElementPresent(
-//                by,
-//                "There's no expected element with text " + expected_text,
-//                60);
-//        String search_text = element.getAttribute("text");
-//        Assert.assertEquals(
-//                "There's no expected text",
-//                expected_text,
-//                search_text
-//        );
-//    }
+    private void assertSearch(By by, String expected_text) {
+        WebElement element = waitForElementPresent(
+                by,
+                "There's no expected element with text " + expected_text,
+                60);
+        String search_text = element.getAttribute("text");
+        Assert.assertEquals(
+                "There's no expected text",
+                expected_text,
+                search_text
+        );
+    }
 }
