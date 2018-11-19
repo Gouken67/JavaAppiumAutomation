@@ -131,6 +131,44 @@ public class FirstTest {
         );
     }
 
+    @Test
+    public void testCancelSearchAndAssertThatTheresNoArticles() {
+        waitForElementAndClick(
+                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
+                "Cannot find Search String",
+                60
+        );
+
+        waitForElementAndSendKeys(
+                By.xpath("//*[contains(@text, 'Search…')]"),
+                "Spider-man",
+                "Cannot find search input",
+                60
+        );
+
+        assertSearch(
+                By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_container']//*[@text='2017 superhero film produced by Marvel Studios and Columbia Pictures']"),
+                "2017 superhero film produced by Marvel Studios and Columbia Pictures"
+        );
+
+        assertSearch(
+                By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_container']//*[@text='2018 American 3D computer-animated superhero film']"),
+                "2018 American 3D computer-animated superhero film"
+        );
+
+        waitForElementAndClick(
+                By.id("org.wikipedia:id/search_close_btn"),
+                "Cannot find X to cancel Search",
+                60
+        );
+
+        waitForElementNotPresent(
+                By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_container']//*[@text='2018 American 3D computer-animated superhero film']"),
+                "The articles is still on the page",
+                60
+        );
+    }
+
     private WebElement waitForElementPresent(By by, String error_message, long timeoutInSeconds) {
         WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
         wait.withMessage(error_message + "\n");
