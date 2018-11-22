@@ -172,31 +172,31 @@ public class FirstTest {
         );
     }
 
-//    @Test
-//    public void testThatSearchResultsContainSearchString() {
-//        waitForElementAndClick(
-//                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
-//                "Cannot find Search String",
-//                60
-//        );
-//
-//        waitForElementAndSendKeys(
-//                By.xpath("//*[contains(@text, 'Search…')]"),
-//                "Steins;Gate",
-//                "Cannot find search input",
-//                60
-//        );
-//
-//        waitForElementPresent(
-//                By.id("org.wikipedia:id/page_list_item_title"),
-//                "Cannot find topic searching by 'Steins;Gate'"
-//        );
-//
-//        assertThatAllElementsContainText(
-//                By.id("org.wikipedia:id/page_list_item_title"),
-//                "Steins;Gate"
-//        );
-//    }
+    @Test
+    public void testThatSearchResultsContainSearchString() {
+        waitForElementAndClick(
+                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
+                "Cannot find Search String",
+                60
+        );
+
+        waitForElementAndSendKeys(
+                By.xpath("//*[contains(@text, 'Search…')]"),
+                "Steins;Gate",
+                "Cannot find search input",
+                60
+        );
+
+        waitForElementPresent(
+                By.id("org.wikipedia:id/page_list_item_title"),
+                "Cannot find topic searching by 'Steins;Gate'"
+        );
+
+        assertThatAllElementsContainText(
+                By.id("org.wikipedia:id/page_list_item_title"),
+                "Steins;Gate"
+        );
+    }
 
     @Test
     public void testSwipeArticle() {
@@ -281,17 +281,17 @@ public class FirstTest {
         );
     }
 
-//    private void assertThatAllElementsContainText(By by, String looking_text) {
-//        List<WebElement> articles = driver.findElements(by);
-//        int size = driver.findElements(by).size();
-//        int i;
-//        for (i = 0; i < size; i++) {
-//            String new_element_text = articles.get(i).getAttribute("text");
-//            Assert.assertTrue(
-//                    "There's no "+ looking_text +" in the block #" + (i + 1),
-//                    new_element_text.contains(looking_text));
-//        }
-//    }
+    private void assertThatAllElementsContainText(By by, String looking_text) {
+        List<WebElement> articles = driver.findElements(by);
+        int size = driver.findElements(by).size();
+        int i;
+        for (i = 0; i < size; i++) {
+            String new_element_text = articles.get(i).getAttribute("text");
+            Assert.assertTrue(
+                    "There's no "+ looking_text +" in the block #" + (i + 1),
+                    new_element_text.contains(looking_text));
+        }
+    }
 
     protected void swipeUp(int timeOfSwipe){
         TouchAction action = new TouchAction(driver);
