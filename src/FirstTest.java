@@ -655,41 +655,41 @@ public class FirstTest {
         );
     }
 
-//    @Test
-//    public void testForTitlePresent() {
-//        waitForElementAndClick(
-//                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
-//                "Cannot find Search String",
-//                60
-//        );
-//
-//        String search_line = "Java";
-//        waitForElementAndSendKeys(
-//                By.xpath("//*[contains(@text, 'Search…')]"),
-//                search_line,
-//                "Cannot find search input",
-//                60
-//        );
-//
-//        waitForElementAndClick(
-//                By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_container']//*[@text='Object-oriented programming language']"),
-//                "Cannot find first article by request " + search_line,
-//                60
-//        );
-//
-//        assertElementPresent(
-//                By.id("org.wikipedia:id/view_page_title_text"),
-//                "There's no title for this article!"
-//        );
-//    }
-//
-//    private void assertElementPresent(By by, String error_message) {
-//        int amount_of_elements = getAmountOfElements(by);
-//        if (amount_of_elements == 0) {
-//            String default_message = "An element '" + by.toString() + "' suppose to be present.";
-//            throw new AssertionError(default_message + " " + error_message);
-//        }
-//    }
+    @Test
+    public void testForTitlePresent() {
+        waitForElementAndClick(
+                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
+                "Cannot find Search String",
+                60
+        );
+
+        String search_line = "Java";
+        waitForElementAndSendKeys(
+                By.xpath("//*[contains(@text, 'Search…')]"),
+                search_line,
+                "Cannot find search input",
+                60
+        );
+
+        waitForElementAndClick(
+                By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_container']//*[@text='Object-oriented programming language']"),
+                "Cannot find first article by request " + search_line,
+                60
+        );
+
+        assertElementPresent(
+                By.id("org.wikipedia:id/view_page_title_text"),
+                "There's no title for this article!"
+        );
+    }
+
+    private void assertElementPresent(By by, String error_message) {
+        int amount_of_elements = getAmountOfElements(by);
+        if (amount_of_elements == 0) {
+            String default_message = "An element '" + by.toString() + "' suppose to be present.";
+            throw new AssertionError(default_message + " " + error_message);
+        }
+    }
 
     private WebElement waitForElementPresent(By by, String error_message, long timeoutInSeconds) {
         WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
