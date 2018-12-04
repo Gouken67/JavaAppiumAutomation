@@ -111,4 +111,13 @@ public class SearchPageObject extends MainPageObject {
                 "We suppose not to find any results"
         );
     }
+
+    public void waitForSearchResultToDisappear(String search_result) {
+        String search_result_xpath = getResultSearchElement(search_result);
+        this.waitForElementNotPresent(
+                By.xpath(search_result_xpath),
+                "The articles is still on the page",
+                60
+        );
+    }
 }

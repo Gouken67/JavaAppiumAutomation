@@ -2,6 +2,7 @@ package lib.ui;
 
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 public class MyListsPageObject extends MainPageObject {
 
@@ -30,7 +31,7 @@ public class MyListsPageObject extends MainPageObject {
         );
     }
 
-    public void  waitForArticleToDisappearByTitle(String article_title) {
+    public void waitForArticleToDisappearByTitle(String article_title) {
         String article_xpath = getSavedArticleXpathByTitle(article_title);
         this.waitForElementNotPresent(
                 By.xpath(article_xpath),
@@ -39,11 +40,11 @@ public class MyListsPageObject extends MainPageObject {
         );
     }
 
-    public void  waitForArticleToAppearByTitle(String article_title) {
+    public void waitForArticleToAppearByTitle(String article_title) {
         String article_xpath = getSavedArticleXpathByTitle(article_title);
         this.waitForElementPresent(
                 By.xpath(article_xpath),
-                "Saved article still present with title " + article_title,
+                "Saved article doesn't present with title " + article_title,
                 60
         );
     }
@@ -56,5 +57,23 @@ public class MyListsPageObject extends MainPageObject {
                 "Cannot find saved article"
         );
         this.waitForArticleToDisappearByTitle(article_title);
+    }
+
+    public void assertThatArticlePresent(String article_title) {
+        String article_xpath = getSavedArticleXpathByTitle(article_title);
+        this.waitForElementPresent(
+                By.xpath(article_xpath),
+                "Cannot find the rest article",
+                60
+        );
+    }
+
+    public void clickOnArticleFromList(String article_title) {
+        String article_xpath = getSavedArticleXpathByTitle(article_title);
+        this.waitForElementAndClick(
+                By.xpath(article_xpath),
+                "Cannot find the rest article",
+                60
+        );
     }
 }

@@ -50,4 +50,18 @@ public class SearchTests extends CoreTestCase {
         SearchPageObject.waitForEmptyResultsLabel();
         SearchPageObject.assertThereIsNoResultsOfSearch();
     }
+
+    //Ex3
+    @Test
+    public void testCancelSearchAndAssertThatTheresNoArticles() {
+        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+
+        SearchPageObject.initSearchInput();
+        SearchPageObject.typeSearchLine("Spider-man");
+        SearchPageObject.waitForSearchResult("2017 superhero film produced by Marvel Studios and Columbia Pictures");
+        SearchPageObject.waitForSearchResult("2018 American 3D computer-animated superhero film");
+        SearchPageObject.waitForCancelButtonToAppear();
+        SearchPageObject.clickCancelSearch();
+        SearchPageObject.waitForSearchResultToDisappear("2018 American 3D computer-animated superhero film");
+    }
 }
