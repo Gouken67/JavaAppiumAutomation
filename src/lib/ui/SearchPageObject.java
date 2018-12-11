@@ -10,6 +10,7 @@ public class SearchPageObject extends MainPageObject {
             SEARCH_INPUT = "//*[contains(@text, 'Search…')]",
             SEARCH_CANCEL_BUTTON = "org.wikipedia:id/search_close_btn",
             SEARCH_RESULT_BY_SUBSTRING_TPL = "//*[@resource-id='org.wikipedia:id/page_list_item_container']//*[@text='{SUBSTRING}']",
+            SEARCH_RESULT_BY_TITLE_AND_DESCRIPTION_TPL = "//android.widget.LinearLayout[@text='{SUBSTRING}']",
             SEARCH_RESULT_ELEMENT = "//*[@resource-id='org.wikipedia:id/search_results_list']/*[@resource-id='org.wikipedia:id/page_list_item_container']",
             SEARCH_EMPTY_RESULT_ELEMENT = "//*[@text='No results found']";
 
@@ -20,6 +21,10 @@ public class SearchPageObject extends MainPageObject {
     /*TEMPLATE METHODS*/
     private static String getResultSearchElement(String substring) {
         return SEARCH_RESULT_BY_SUBSTRING_TPL.replace("{SUBSTRING}", substring);
+    }
+
+    private static String getResultSearchByTitleAndDescription(String substring) {
+        return SEARCH_RESULT_BY_TITLE_AND_DESCRIPTION_TPL.replace("{SUBSTRING}", substring);
     }
     /*TEMPLATE METHODS*/
 
@@ -117,6 +122,23 @@ public class SearchPageObject extends MainPageObject {
         this.waitForElementNotPresent(
                 By.xpath(search_result_xpath),
                 "The articles is still on the page",
+                60
+        );
+    }
+
+    public void waitForElementByTitleAndDescription(String title, String description) {
+        String search_result_by_title_xpath = getResultSearchByTitleAndDescription(title);
+        String search_result_by_description_xpath = getResultSearchByTitleAndDescription(description);
+
+        this.waitForElementPresent(
+                By.xpath(search_result_by_title_xpath),
+                "The article with such title doesn't present in the search results",
+                60
+        );
+
+        this.waitForElementPresent(
+                By.xpath(search_result_by_description_xpath),
+                "The article with such description doesn't present in the search results",
                 60
         );
     }

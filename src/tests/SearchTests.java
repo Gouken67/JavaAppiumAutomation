@@ -64,4 +64,15 @@ public class SearchTests extends CoreTestCase {
         SearchPageObject.clickCancelSearch();
         SearchPageObject.waitForSearchResultToDisappear("2018 American 3D computer-animated superhero film");
     }
+
+    @Test
+    public void testAssertResultsByTitleAndDescription(){
+        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+
+        SearchPageObject.initSearchInput();
+        SearchPageObject.typeSearchLine("Java");
+        SearchPageObject.waitForElementByTitleAndDescription("Java", "Island of Indonesia");
+        SearchPageObject.waitForElementByTitleAndDescription("Java (programming language)", "Object-oriented programming language");
+        SearchPageObject.waitForElementByTitleAndDescription("JavaScript", "Programming language");
+    }
 }
